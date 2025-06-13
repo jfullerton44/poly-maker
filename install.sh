@@ -12,4 +12,8 @@ pip install --upgrade pip
 pip install -r requirements.txt
 pip install setuptools
 
+cd poly_merger
+npm install
+cd ..
+
 echo "Installation complete!"
