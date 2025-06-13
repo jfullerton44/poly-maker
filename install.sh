@@ -11,7 +11,7 @@ source .venv/bin/activate
 pip install --upgrade pip
 pip install -r requirements.txt
 pip install setuptools
-
+ls
 cd poly_merger
 npm install
 cd ..
