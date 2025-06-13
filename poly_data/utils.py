@@ -13,11 +13,13 @@ def get_sheet_df():
     spreadsheet = get_spreadsheet()
 
     wk = spreadsheet.worksheet(sel)
-    df = pd.DataFrame(wk.get_all_records())
+    records = wk.get_all_records()
+    df = pd.DataFrame(records)
     df = df[df['question'] != ""].reset_index(drop=True)
 
     wk2 = spreadsheet.worksheet(all)
-    df2 = pd.DataFrame(wk2.get_all_records())
+    records = wk2.get_all_records()
+    df2 = pd.DataFrame(records)
     df2 = df2[df2['question'] != ""].reset_index(drop=True)
 
 

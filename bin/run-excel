@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+
+dir="$(dirname "$0")"/..
+cd "$dir" || exit
+
+echo "Running poly-maker..."
+if [ -f .env ]; then
+    echo "Sourcing env variables from dot env file..."
+    source .env
+else
+    echo "Fetching env variables..."
+fi
+echo "Setting up virtual environment..."
+source .venv/bin/activate
+
+exec python3 update_markets.py
