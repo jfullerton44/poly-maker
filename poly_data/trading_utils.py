@@ -140,9 +140,10 @@ def get_buy_sell_amount(position, bid_price, row):
 
     if bid_price < 0.1:
 
-        if row['multiplier'] != '':
-            print(f"Multiplying buy amount by {int(row['multiplier'])}")
-            buy_amount = buy_amount * int(row['multiplier'])
+        multiplier = row.get('multiplier', '')
+        if multiplier != '':
+            print(f"Multiplying buy amount by {int(multiplier)}")
+            buy_amount = buy_amount * int(multiplier)
 
     return buy_amount, sell_amount
 
