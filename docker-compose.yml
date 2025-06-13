@@ -1,0 +1,19 @@
+services:
+  app:
+    extends:
+      file: docker-compose.build.yml
+      service: app
+    environment:
+      - PYTHONUNBUFFERED=1
+    env_file:
+      - .env
+    command: ./run
+  excel:
+    extends:
+      file: docker-compose.build.yml
+      service: excel
+    environment:
+      - PYTHONUNBUFFERED=1
+    env_file:
+      - .env
+    command: ./run-excel

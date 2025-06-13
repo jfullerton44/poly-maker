@@ -54,7 +54,7 @@ class PolymarketClient:
         # Don't print sensitive wallet information
         print("Initializing Polymarket client...")
         chain_id=POLYGON
-        self.browser_wallet=Web3.toChecksumAddress(browser_address)
+        self.browser_wallet=Web3.to_checksum_address(browser_address)
 
         # Initialize the Polymarket API client
         self.client = ClobClient(
@@ -62,7 +62,7 @@ class PolymarketClient:
             key=key,
             chain_id=chain_id,
             funder=self.browser_wallet,
-            signature_type=2
+            signature_type=1
         )
 
         # Set up API credentials
@@ -126,7 +126,7 @@ class PolymarketClient:
 
         # Handle regular vs negative risk markets differently
         if neg_risk == False:
-            signed_order = self.client.create_order(order_args)
+            signed_order = self.client.create_order(order_args, options=PartialCreateOrderOptions(neg_risk=False))
         else:
             signed_order = self.client.create_order(order_args, options=PartialCreateOrderOptions(neg_risk=True))
             
