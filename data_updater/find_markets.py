@@ -13,7 +13,13 @@ if not os.path.exists('data'):
 def get_sel_df(spreadsheet, sheet_name='Selected Markets'):
     try:
         wk2 = spreadsheet.worksheet(sheet_name)
-        sel_df = pd.DataFrame(wk2.get_all_records())
+        records = wk2.get_all_records()
+        if records:
+            sel_df = pd.DataFrame(records)
+        else:
+            # Get field names from the header row
+            header = wk2.row_values(1)
+            sel_df = pd.DataFrame(columns=header)
         sel_df = sel_df[sel_df['question'] != ""].reset_index(drop=True)
         return sel_df
     except:
